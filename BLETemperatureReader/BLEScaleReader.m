@@ -16,6 +16,9 @@
 @property (weak, nonatomic) IBOutlet UIView *controlContainerView;
 @property (weak, nonatomic) IBOutlet UIView *circleView;
 @property (weak, nonatomic) IBOutlet UILabel *weightLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *recordCupWeightSwitch;
+@property (weak, nonatomic) IBOutlet UITextField *currentCupWeight;
+
 - (IBAction)saveCupWeightButton:(id)sender;
 
 @property (nonatomic, strong) CBCentralManager *centralManager;
@@ -174,6 +177,7 @@
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     NSLog(@"Disconnected...");
+    self.weightLabel.text = @"Searching";
 }
 
 
@@ -236,14 +240,24 @@
         self.lastGramReading = grams;
         NSLog(@"*** Grams: %d", grams);
         
-        // Update UI
-        [self displayGrams:grams];
-        
-        // Update Health Kit
-        [[HealthKitManager sharedManager] writeWaterSample:grams];
-        
-        // Update Core Data
-        // [self recordGrams:grams];
+        BOOL isCupWeighIn = [self.recordCupWeightSwitch isOn];
+        if(isCupWeighIn) {
+            // Update UI to show grams
+            [self displayGrams:grams];
+            // Record cup weight to CoreData
+            [self deleteAllObjects:@"CupWeight"]; // make sure we only have one entry for cup weight in database
+            [self recordGrams:grams];
+            self.currentCupWeight.text = [NSString stringWithFormat:@" %d grams", (int)grams];
+        } else {
+            int cupWeight = [self getCupWeight];
+            int weightWithoutCup = grams - cupWeight;
+            // Update UI to show grams
+            [self displayGrams:weightWithoutCup];
+            
+            // Update Health Kit
+            [[HealthKitManager sharedManager] writeWaterSample:weightWithoutCup];
+            NSLog(@"HealthKit updated with %d mL", weightWithoutCup);
+        }
     }
 }
 
@@ -251,20 +265,51 @@
 
 - (void)recordGrams:(int) grams {
     // Create Managed Object
-    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"WaterWeight" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"CupWeight" inManagedObjectContext:self.managedObjectContext];
     NSManagedObject *newSample = [[NSManagedObject alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:self.managedObjectContext];
     [newSample setValue:[NSNumber numberWithInt:grams] forKey:@"grams"];
     
     NSDate *today = [NSDate date];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"dd/MM/yyyy"];
-    [newSample setValue:today forKey:@"date"];
+    //[newSample setValue:today forKey:@"date"];
     
     NSError *error = nil;
     
     if (![newSample.managedObjectContext save:&error]) {
         NSLog(@"Unable to save managed object context.");
         NSLog(@"%@, %@", error, error.localizedDescription);
+    }
+}
+
+- (int)getCupWeight {
+    
+    NSManagedObjectContext *moc = self.managedObjectContext;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"CupWeight"];
+    
+    NSError *error = nil;
+    NSArray *results = [moc executeFetchRequest:request error:&error];
+    if (!results) {
+        NSLog(@"Error fetching Employee objects: %@\n%@", [error localizedDescription], [error userInfo]);
+        abort();
+    }
+    NSManagedObject *weight = (NSManagedObject *)[results objectAtIndex:0];
+    NSNumber *cupWeight = [weight valueForKey:@"grams"];
+    NSLog(@"Database has cup weight of %@ grams", cupWeight);
+    
+    return [cupWeight intValue];
+}
+
+-(void)deleteAllObjects: (NSString *)entityName{
+    NSFetchRequest *request=[NSFetchRequest fetchRequestWithEntityName:entityName];
+    NSError *error;
+    NSArray *items =[self.managedObjectContext executeFetchRequest:request error:&error];
+    
+    for (NSManagedObject *managedObject in items) {
+        [self.managedObjectContext deleteObject:managedObject];
+    }
+    if(![self.managedObjectContext save:&error]){
+        NSLog(@"Error deleting: %@ - error: %@",entityName,error);
     }
 }
 
