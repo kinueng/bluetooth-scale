@@ -59,6 +59,8 @@
     [self.view bringSubviewToFront:self.backgroundImageView];
     (self.backgroundImageView).alpha = 1;
     [self.view bringSubviewToFront:self.controlContainerView];
+    int cupWeight = [self getCupWeight];
+    self.currentCupWeight.text = [NSString stringWithFormat:@" %d grams", (int)cupWeight];
 }
 
 - (void)pauseScan {
