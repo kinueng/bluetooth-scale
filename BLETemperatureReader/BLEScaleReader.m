@@ -181,6 +181,7 @@
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     NSLog(@"Disconnected...");
     self.weightLabel.text = @"Searching";
+    [central connectPeripheral:peripheral options:nil];
 }
 
 
