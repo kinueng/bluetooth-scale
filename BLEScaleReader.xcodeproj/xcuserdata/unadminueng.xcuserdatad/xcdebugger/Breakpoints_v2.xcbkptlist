@@ -114,11 +114,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BLETemperatureReader/BLEScaleReader.m"
-            timestampString = "526353866.435807"
+            timestampString = "526355370.857992"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "-peripheral:didUpdateValueForCharacteristic:error:"
             landmarkType = "7">
          </BreakpointContent>
@@ -130,11 +130,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BLETemperatureReader/BLEScaleReader.m"
-            timestampString = "526353866.435807"
+            timestampString = "526355370.857992"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "-peripheral:didUpdateValueForCharacteristic:error:"
             landmarkType = "7">
          </BreakpointContent>
@@ -162,11 +162,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BLETemperatureReader/BLEScaleReader.m"
-            timestampString = "526353866.435807"
+            timestampString = "526355370.857992"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "325"
-            endingLineNumber = "325"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
             landmarkName = "-getCupWeight"
             landmarkType = "7">
          </BreakpointContent>
@@ -178,11 +178,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BLETemperatureReader/BLEScaleReader.m"
-            timestampString = "526353866.435807"
+            timestampString = "526355370.857992"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "322"
-            endingLineNumber = "322"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
             landmarkName = "-getCupWeight"
             landmarkType = "7">
          </BreakpointContent>
@@ -210,11 +210,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BLETemperatureReader/BLEScaleReader.m"
-            timestampString = "526353866.435807"
+            timestampString = "526355370.857992"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "-peripheral:didUpdateValueForCharacteristic:error:"
             landmarkType = "7">
          </BreakpointContent>
