@@ -5,7 +5,8 @@
 #define RESCAN_WAIT_TIME 3.0
 #define BLE_SCAN_INTERVAL  2.0
 
-#define TARGET_BLE_UUID @"4AAA7263-F13F-482F-9F8C-6EE1637BD534"
+//#define TARGET_BLE_UUID @"4AAA7263-F13F-482F-9F8C-6EE1637BD534"
+#define TARGET_BLE_UUID @"4EE1B9FB-ED46-4C9C-96C6-5112A8EA3E3F"
 #define TARGET_BLE_SERVICE_UUID @"FFF0"
 #define TARGET_BLE_CHARACTERISIC_UUID @"FFF4"
 
@@ -221,13 +222,14 @@
     if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:@"FFF4"]]) {
         // Extract the data from the characteristic's value property
         // and display the value based on the characteristic type
-        NSData *dataBytes = characteristic.value;
+        NSData *data = characteristic.value;
         
-        // Get the 3rd byte to get the amount of grams in hex
-        NSData *gramsInTwoByte = [dataBytes subdataWithRange:NSMakeRange(4,4)];
+        // Get the two bytes that represent the amount of grams in hex
+        NSData *gramsInTwoByte = [data subdataWithRange:NSMakeRange(4,2)];
         
-        // We want to shift over 1 byte because only the byte of the left is used
-        int grams = *(int*)([gramsInTwoByte bytes]) >> 8;
+        // Convert the 2 byte hex value to int
+        NSMutableString *hexString = [self nsDataToString:gramsInTwoByte];
+        int grams = [self hexStringToInt:hexString];
         
         if(self.lastGramReading == grams) {
             // The IDAODAN brand scale sensor sends two notifications for one read.
@@ -263,6 +265,23 @@
     }
 }
 
+- (NSMutableString *) nsDataToString:(NSData *) data {
+    NSUInteger dataLength = [data length];
+    NSMutableString *stringResult = [NSMutableString stringWithCapacity:dataLength*2];
+    const unsigned char *dataBytes = [data bytes];
+    for (NSInteger idx = 0; idx < dataLength; ++idx) {
+        [stringResult appendFormat:@"%02x", dataBytes[idx]];
+    }
+    return stringResult;
+}
+
+- (int) hexStringToInt:(NSMutableString *) hexString {
+    unsigned result;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner scanHexInt:&result];
+    return result;
+}
+
 #pragma mark - Core Data Methods
 
 - (void)recordGrams:(int) grams {
@@ -294,6 +313,9 @@
     if (!results) {
         NSLog(@"Error fetching Employee objects: %@\n%@", [error localizedDescription], [error userInfo]);
         abort();
+    }
+    if([results count] == 0) {
+        return 0;
     }
     NSManagedObject *weight = (NSManagedObject *)[results objectAtIndex:0];
     NSNumber *cupWeight = [weight valueForKey:@"grams"];

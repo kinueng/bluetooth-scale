@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,25 +18,26 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="temp-10" translatesAutoresizingMaskIntoConstraints="NO" id="wnF-Do-zGz" userLabel="backgroundImageView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="temp-10" translatesAutoresizingMaskIntoConstraints="NO" id="wnF-Do-zGz" userLabel="backgroundImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7UR-uE-GnX" userLabel="controlContainerView">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7UR-uE-GnX" userLabel="controlContainerView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="698"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eX-7G-cvK" userLabel="Circle View">
-                                        <rect key="frame" x="50" y="90" width="220" height="220"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6eX-7G-cvK" userLabel="Circle View">
+                                        <rect key="frame" x="77.5" y="90" width="220" height="220"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="220" id="6Sy-oT-1yM"/>
                                             <constraint firstAttribute="width" constant="220" id="b6p-MT-gfZ"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2z-e3-pvz" userLabel="Weight Label">
-                                        <rect key="frame" x="10" y="150" width="300" height="100"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2z-e3-pvz" userLabel="Weight Label">
+                                        <rect key="frame" x="37.5" y="150" width="300" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="VLK-4C-ZPh"/>
                                             <constraint firstAttribute="height" constant="100" id="zdj-rT-psJ"/>
@@ -46,24 +47,25 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Cup Weight:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fey-J0-zl1">
-                                        <rect key="frame" x="27" y="487" width="157" height="30"/>
+                                        <rect key="frame" x="54" y="465" width="157" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8sS-bD-d0q">
-                                        <rect key="frame" x="197" y="487" width="97" height="30"/>
+                                        <rect key="frame" x="224" y="465" width="97" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
                                     </textField>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UYN-qR-pt1">
-                                        <rect key="frame" x="245" y="438" width="51" height="31"/>
+                                        <rect key="frame" x="272" y="416" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Record Cup Weight" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQh-NE-2v7">
-                                        <rect key="frame" x="27" y="443" width="149" height="21"/>
+                                        <rect key="frame" x="54" y="421" width="149" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -80,16 +82,6 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="wnF-Do-zGz" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="9Xw-mt-PIJ"/>
-                            <constraint firstItem="wnF-Do-zGz" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="KiJ-C0-dqj"/>
-                            <constraint firstItem="7UR-uE-GnX" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="XeB-p5-mTS"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="wnF-Do-zGz" secondAttribute="bottom" id="Z4W-Uu-aYb"/>
-                            <constraint firstItem="7UR-uE-GnX" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="hZj-qv-wFm"/>
-                            <constraint firstAttribute="trailing" secondItem="7UR-uE-GnX" secondAttribute="trailing" id="jL4-HD-5jL"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="7UR-uE-GnX" secondAttribute="bottom" id="sIz-Ol-ECK"/>
-                            <constraint firstAttribute="trailing" secondItem="wnF-Do-zGz" secondAttribute="trailing" id="wi8-7e-Q8J"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="backgroundImageView" destination="wnF-Do-zGz" id="hIE-Yj-MWA"/>
